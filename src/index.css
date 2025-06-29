@@ -1,2 +1,53 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+
+/* common section */
+
+.primary_text_color {
+    @apply text-[#00A4EF]
+}
+
+.primary_bg_color {
+    @apply bg-[#00A4EF]
+}
+
+.log_in_form_bg {
+    @apply bg-[#ff006fd2]
+}
+
+
+.primary_btn{
+    @apply bg-[#00A4EF] text-white font-semibold px-5 py-1.5 capitalize text-lg rounded-md  cursor-pointer
+}
+
+
+
+.secondary_btn{
+    @apply bg-white text-black font-semibold px-5 py-2 capitalize text-base rounded-md border border-[#00A4EF]  hover:bg-[#00A4EF] hover:text-white transition-all cursor-pointer
+}
+
+
+.action_btn{
+  @apply bg-[#00A4EF] text-white font-semibold px-4 py-1  text-lg rounded-md cursor-pointer
+
+}
+
+.common_padding{
+    @apply px-4 sm:px-8 md:px-12 lg:px-14 xl:px-16
+}
+
+
+
+
+/*  */
+
+.form_error {
+    @apply text-base lowercase mb-2 text-red-700
+}
+
+
+.form_section input {
+    @apply border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 mb-4 mt-2
+}
