@@ -10,7 +10,7 @@ const Navbar = () => {
     
     <li>  <Link className='text-lg font-semibold capitalize mx-2' to='/'> home  </Link>  </li>
     <li>  <Link className='text-lg font-semibold capitalize mx-2' to='/events'> events  </Link>  </li>
-    <li>  <Link className='text-lg font-semibold capitalize mx-2' to='/add-events'> add events </Link>  </li>
+    <li>  <Link className='text-lg font-semibold capitalize mx-2' to='/add-event'> add event </Link>  </li>
     <li>  <Link className='text-lg font-semibold capitalize mx-2' to='/my-events'> my  events </Link>  </li>
     </>
 

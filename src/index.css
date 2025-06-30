@@ -29,11 +29,6 @@
 }
 
 
-.action_btn{
-  @apply bg-[#00A4EF] text-white font-semibold px-4 py-1  text-lg rounded-md cursor-pointer
-
-}
-
 .common_padding{
     @apply px-4 sm:px-8 md:px-12 lg:px-14 xl:px-16
 }
@@ -44,10 +39,10 @@
 /*  */
 
 .form_error {
-    @apply text-base lowercase mb-2 text-red-700
+    @apply text-base lowercase mb-2 text-red-700 capitalize
 }
 
 
-.form_section input {
-    @apply border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 mb-4 mt-2
+.events_form_section input {
+    @apply w-full  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-600 mb-5 mt-2
 }

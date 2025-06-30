@@ -7,6 +7,7 @@ import Layout from '../Layout/Layout';
 import Home from '../Pages/HomePage/Home';
 import LogIn from '../Pages/AuthPage/LogIn';
 import SignUp from '../Pages/AuthPage/SignUp';
+import AddEvent from '../Pages/Add-Event/AddEvent';
 
 
 
@@ -27,7 +28,12 @@ const Router = createBrowserRouter([
        {
         path : '/sign-up',
         element : <SignUp></SignUp>
+       },
+       {
+              path : '/add-event',
+                element : <AddEvent></AddEvent>
        }
+
     ]
   },
 ]);
