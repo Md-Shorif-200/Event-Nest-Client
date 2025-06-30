@@ -51,3 +51,7 @@
 .Event_card:hover .primary_btn{
       @apply  bg-white text-black 
 }
+
+.Event_card:hover .card_icon{
+    color:  white;
+}

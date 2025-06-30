@@ -9,8 +9,8 @@ const EventCard = ({event}) => {
                         {/* card heading */}
              <div className="card_heading flex justify-between">
                   <h1 className='text-xl md:text-2xl font-semibold capitalize'> {eventTitle.slice(0,30)} </h1>
-                   <div className='flex items-center gap-x-3 text-2xl'>
-                            <FaUsers className='text-sky-500'></FaUsers>
+                   <div className='flex items-center gap-x-3 text-2xl'  title='Attendee Count'>
+                            <FaUsers className=' card_icon text-sky-500'></FaUsers>
                              <p>  {attendeeCount} </p>
                        </div>
              </div>
