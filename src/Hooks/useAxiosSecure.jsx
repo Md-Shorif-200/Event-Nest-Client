@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 
-const userAxiosSecure = () => {
+const useAxiosSecure = () => {
        const axiosSecure = axios.create({
          baseURL : 'http://localhost:5000/'
        })
@@ -10,4 +10,4 @@ const userAxiosSecure = () => {
     return axiosSecure;
 };
 
-export default userAxiosSecure;
+export default useAxiosSecure;

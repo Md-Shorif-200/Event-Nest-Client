@@ -8,6 +8,7 @@ import Home from '../Pages/HomePage/Home';
 import LogIn from '../Pages/AuthPage/LogIn';
 import SignUp from '../Pages/AuthPage/SignUp';
 import AddEvent from '../Pages/Add-Event/AddEvent';
+import Events from '../Pages/Events/Events';
 
 
 
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
        {
               path : '/add-event',
                 element : <AddEvent></AddEvent>
+       },
+       {
+        path : '/events',
+        element  : <Events></Events>
        }
 
     ]

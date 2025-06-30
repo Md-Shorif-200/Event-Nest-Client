@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import lottieImg from '../../assets/Animation - 1751260954539 (1).json'
 import Lottie from 'lottie-react';
-import userAxiosSecure from '../../Hooks/userAxiosSecure';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 
 const AddEvent = () => {
@@ -16,7 +16,7 @@ const AddEvent = () => {
       } = useForm();
 
       const {user} = useAuth(); // context api
-      const axiosSecure = userAxiosSecure();
+      const axiosSecure = useAxiosSecure();
 
 
 
@@ -26,7 +26,7 @@ const AddEvent = () => {
                 // event information
             const eventInfo = {
                eventTitle : data?.eventTitle,
-               name :  user?.name,
+               name :  user?.displayName,
                email : user?.email,
                eventDate : data?.Date,
                eventTime : data?.time,

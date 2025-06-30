@@ -46,3 +46,8 @@
 .events_form_section input {
     @apply w-full  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-600 mb-5 mt-2
 }
+
+
+.Event_card:hover .primary_btn{
+      @apply  bg-white text-black 
+}

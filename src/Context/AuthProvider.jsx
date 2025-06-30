@@ -10,7 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import userAxiosSecure from "../Hooks/userAxiosSecure";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
 export const authContext = createContext(); // creat context api
@@ -19,7 +19,7 @@ const auth = getAuth(app); // firebase auth
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
-  const axiosSecure = userAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const googleProvider = new GoogleAuthProvider();
 
   console.log(user);
