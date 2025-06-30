@@ -26,7 +26,7 @@ const EventCard = ({event}) => {
                         </div>
                    </div>
                    <p className="location text-base md:text-lg font-semibold">  Location :  <span className='font-normal'>{location} </span> </p>
-                   <p className="description  text-base mt-2 mb-4">  {description.slice(0,50)} </p>
+                   <p className="description  text-base mt-2 mb-6">  {description.slice(0,50)} </p>
              </div>
                     {/* card button */}
              <div className="card_button flex justify-end">

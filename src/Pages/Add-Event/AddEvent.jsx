@@ -5,6 +5,7 @@ import lottieImg from '../../assets/Animation - 1751260954539 (1).json'
 import Lottie from 'lottie-react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AddEvent = () => {
             // react hook form 
@@ -17,6 +18,7 @@ const AddEvent = () => {
 
       const {user} = useAuth(); // context api
       const axiosSecure = useAxiosSecure();
+      const navigate = useNavigate();
 
 
 
@@ -43,6 +45,10 @@ const AddEvent = () => {
                    if(result.acknowledged && result.insertedId){
                       toast.success('Event addition completed successfully.')
                       reset() // reset form
+
+                      setTimeout(() => {
+                        navigate('/my-events') // navigate to my-events section 
+                      }, 800);
                    }
                    
           } catch (error) {
