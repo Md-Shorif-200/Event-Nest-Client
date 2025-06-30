@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import lottieImg from "../../assets/Animation - 1751260954539 (1).json";
@@ -6,6 +6,9 @@ import Lottie from "lottie-react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendar, FaCalendarAlt } from "react-icons/fa";
 
 const AddEvent = () => {
   // react hook form
@@ -13,12 +16,21 @@ const AddEvent = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm();
 
   const { user } = useAuth(); // context api
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const [eventDateTime,setEventDateTime] = useState('');
+
+   useEffect(() => {
+       setValue('date_time',setEventDateTime)
+   },[setEventDateTime,setValue])
+
+ 
+   
 
   // events form submit
   const onsubmit = async (data) => {
@@ -28,11 +40,12 @@ const AddEvent = () => {
       eventTitle: data?.eventTitle,
       name: user?.displayName,
       email: user?.email,
-      eventDate: data?.Date,
-      eventTime: data?.time,
+      eventDate : eventDateTime.toLocaleDateString(),
+      eventTime : eventDateTime.toLocaleTimeString(),
       location: data?.location,
       description: data?.description,
       attendeeCount: 0,
+      attendeeBy : []
     };
 
     // send event Information to data base
@@ -53,14 +66,14 @@ const AddEvent = () => {
   };
 
   return (
-    <div className="w-full min-h-screen common_padding grid grid-cols-2 gap-6 pt-10">
-      <div className="event_img_section w-full flex justify-center items-center ">
+    <div className="w-full min-h-screen common_padding flex flex-col-reverse lg:flex-row gap-6 pt-10">
+      <div className="event_img_section  w-full lg:w-[50%] flex justify-center items-center ">
         <Lottie
           animationData={lottieImg}
           className="w-full sm:w-[80%]"
         ></Lottie>
       </div>
-      <div className="events_form_section">
+      <div className="events_form_section w-full lg:w-[50%]">
         <form action="" onSubmit={handleSubmit(onsubmit)}>
           {/* event title */}
           <div>
@@ -99,38 +112,38 @@ const AddEvent = () => {
           </div>
 
           {/* date and Time */}
-          <div className="w-ful date_&_time flex gap-x-3">
-            {/* date */}
-
-            <div className="date w-full">
+          <div className="w-full date_&_time  ">
+    
               <label htmlFor="" className="block font-semibold capitalize">
-                date
+                Date & Time
               </label>
+                    {/* date picker */}
+                   <div className="relative">
+                            <FaCalendarAlt className="absolute top-7 right-7 text-xl"></FaCalendarAlt>
+                      <DatePicker 
+                     selected={eventDateTime}
+                     onChange={setEventDateTime}
+                     showTimeSelect
+                     timeFormat="h:mm aa"
+                     timeIntervals={15}
+                     dateFormat="MMMM d, yyyy h:mm aa"
+                     className=' '
+                     placeholder= 'select data & time'
+                     >
+
+                     </DatePicker>
+                   </div>
               <input
-                type="date"
-                {...register("Date", { required: "date is Required" })}
-                className=" input w-full px-3 py-2  "
+                type="hidden"
+                {...register("date_time", { required: "this field is Required" })}
+                className=" "
               />
 
-              {errors.Date && (
-                <p className="form_error">{errors.Date.message} </p>
+              {errors.date_time && (
+                <p className="form_error">{errors.date_time.message} </p>
               )}
-            </div>
-            {/* time */}
-            <div className="time w-full">
-              <label htmlFor="" className="block font-semibold capitalize">
-                Time
-              </label>
-              <input
-                type="time"
-                {...register("time", { required: "time is Required" })}
-                className=" input w-full px-3 py-2  "
-              />
-
-              {errors.time && (
-                <p className="form_error">{errors.time.message} </p>
-              )}
-            </div>
+      
+          
           </div>
 
           {/* location */}

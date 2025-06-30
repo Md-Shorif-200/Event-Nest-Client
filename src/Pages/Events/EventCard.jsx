@@ -1,9 +1,13 @@
 import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event ,refetch }) => {
   const {
+     _id,
     eventTitle,
     name,
     email,
@@ -12,9 +16,40 @@ const EventCard = ({ event }) => {
     location,
     description,
     attendeeCount,
+    attendeeBy
   } = event;
+
+  const axiosSecure = useAxiosSecure() // private api
+  const {user} = useAuth();
+
+
+  // join event function
+  const handleJoinEventBtn = async(id) => {
+         const  data = {
+            email  : user?.email
+         }
+
+         try {
+              const res = await axiosSecure.patch(`/api/events/update/${id}`,data)
+               const result = res.data;
+               if(result.acknowledged && result.modifiedCount > 0) {
+                   toast.success('You have successfully joined the event');
+                   refetch() ; // refetch data
+               }
+              
+         } catch (error) {
+            toast.error('You are already attending the event.')
+         }
+  }
+
+
+
+
+
+
+
   return (
-    <div className="Event_card bg-white  text-black shadow-lg rounded-md px-4 py-8 border-1 border-sky-500 hover:bg-[#00A4EF] hover:text-white transition-all">
+    <div className="Event_card max-h-[300px] bg-white  text-black shadow-lg rounded-md px-4 py-8 border-1 border-sky-500  hover:scale-105 transition-all">
       {/* card heading */}
       <div className="card_heading flex justify-between">
         <h1 className="text-xl md:text-2xl font-semibold capitalize">
@@ -49,12 +84,12 @@ const EventCard = ({ event }) => {
         </p>
         <p className="description  text-base mt-2 mb-6">
           {" "}
-          {description.slice(0, 50)}{" "}
+          {description}{" "}
         </p>
       </div>
       {/* card button */}
       <div className="card_button flex justify-end">
-        <Link className="primary_btn "> Joint Event </Link>
+        <button className={`${attendeeBy?.includes(email) ? 'btn' : 'primary_btn'}`} onClick={() => handleJoinEventBtn(_id)} > Join Event </button>
       </div>
     </div>
   );
