@@ -40,20 +40,26 @@ const AddEvent = () => {
       eventTitle: data?.eventTitle,
       name: user?.displayName,
       email: user?.email,
-      eventDate : eventDateTime.toLocaleDateString(),
-      eventTime : eventDateTime.toLocaleTimeString(),
+      eventDateTime : new Date(eventDateTime),
       location: data?.location,
       description: data?.description,
       attendeeCount: 0,
       attendeeBy : []
     };
 
+
+      console.log(typeof(eventDateTime));
+      
+    
+
     // send event Information to data base
     try {
       const response = await axiosSecure.post("/api/events", eventInfo);
       const result = response.data;
       if (result.acknowledged && result.insertedId) {
-        toast.success("Event addition completed successfully.");
+        toast.success("Event addition completed successfully.",{
+          position : 'top-left'
+        });
         reset(); // reset form
 
         setTimeout(() => {

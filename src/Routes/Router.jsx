@@ -10,6 +10,7 @@ import SignUp from '../Pages/AuthPage/SignUp';
 import AddEvent from '../Pages/Add-Event/AddEvent';
 import Events from '../Pages/Events/Events';
 import MyEvents from '../Pages/My-Events/MyEvents';
+import PrivateRoute from './PrivateRoute';
 
 
 
@@ -33,15 +34,15 @@ const Router = createBrowserRouter([
        },
        {
               path : '/add-event',
-                element : <AddEvent></AddEvent>
+                element : <PrivateRoute> <AddEvent></AddEvent></PrivateRoute>
        },
        {
         path : '/events',
-        element  : <Events></Events>
+        element  :  <PrivateRoute><Events></Events></PrivateRoute>
        },
        {
         path : '/my-events',
-        element : <MyEvents></MyEvents>
+        element : <PrivateRoute><MyEvents></MyEvents></PrivateRoute>
        }
 
     ]

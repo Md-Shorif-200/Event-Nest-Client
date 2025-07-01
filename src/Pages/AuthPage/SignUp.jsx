@@ -3,10 +3,9 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import img_1 from "../../assets/form_img.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogIn from "./SocialLogIn";
-
 
 
 const SignUp = () => {
@@ -19,6 +18,9 @@ const SignUp = () => {
 
   const {creatUser,updateUserProfile} = useAuth() // context api
   const [showPassword,setshowPassword] = useState(false);
+    const location = useLocation();
+
+
 
 
   //   form submit function

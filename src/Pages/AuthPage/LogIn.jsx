@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import img_1 from "../../assets/form_img.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogIn from "./SocialLogIn";
+
 
 
 
@@ -19,13 +20,23 @@ const LogIn = () => {
 
   const {logIn} = useAuth() // context api
   const [showPassword,setshowPassword] = useState(false);
+    const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
 
   //   form submit function
 
   const onsubmit = async (data) => {
 
-   const result =  await logIn(data.email,data.password)
+ try {
+      const result = await logIn(data.email, data.password);
+      reset();
+      navigate(from, { replace: true });
+      toast("log In Succssfully");
+    } catch (error) {
+      toast.error(error.message);
+    }
           
   };
 

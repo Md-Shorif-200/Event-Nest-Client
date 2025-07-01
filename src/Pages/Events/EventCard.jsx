@@ -11,8 +11,7 @@ const EventCard = ({ event ,refetch }) => {
     eventTitle,
     name,
     email,
-    eventDate,
-    eventTime,
+   eventDateTime,
     location,
     description,
     attendeeCount,
@@ -21,6 +20,11 @@ const EventCard = ({ event ,refetch }) => {
 
   const axiosSecure = useAxiosSecure() // private api
   const {user} = useAuth();
+      console.log(typeof(eventDateTime));
+
+  // get  local date and time 
+  const eventDate =  new Date(eventDateTime).toLocaleDateString();
+  const eventTime =  new Date(eventDateTime).toLocaleTimeString();
 
 
   // join event function
@@ -33,7 +37,9 @@ const EventCard = ({ event ,refetch }) => {
               const res = await axiosSecure.patch(`/api/events/update/${id}`,data)
                const result = res.data;
                if(result.acknowledged && result.modifiedCount > 0) {
-                   toast.success('You have successfully joined the event');
+                   toast.success('You have successfully joined the event',{
+                    position :'top-left'
+                   });
                    refetch() ; // refetch data
                }
               
@@ -65,6 +71,8 @@ const EventCard = ({ event ,refetch }) => {
         </div>
       </div>
       {/* card_para */}
+
+              {/* date and time */}
       <div className="card_para">
         <div className="date_time  flex justify-between items-center mt-4 mb-2">
           <div className="date flex gap-x-1  items-center">
@@ -78,11 +86,13 @@ const EventCard = ({ event ,refetch }) => {
             <p className="text-base md:text-lg"> {eventTime} </p>
           </div>
         </div>
+
+
         <p className="location text-base md:text-lg font-semibold">
           {" "}
           Location : <span className="font-normal">{location} </span>{" "}
         </p>
-        <p className="description  text-base mt-2 mb-6">
+        <p className="description  text-base mt-2 mb-6 overflow-hidden">
           {" "}
           {description}{" "}
         </p>

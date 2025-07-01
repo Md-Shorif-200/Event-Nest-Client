@@ -14,8 +14,7 @@ const MyEventsCard = ({ MyEvent, isLoading, refetch }) => {
     eventTitle,
     name,
     email,
-    eventDate,
-    eventTime,
+  eventDateTime,
     location,
     description,
     attendeeCount,
@@ -27,6 +26,9 @@ const MyEventsCard = ({ MyEvent, isLoading, refetch }) => {
   if (isLoading) {
     return <Loading></Loading>;
   }
+  // get  local date and time 
+  const eventDate =  new Date(eventDateTime).toLocaleDateString();
+  const eventTime =  new Date(eventDateTime).toLocaleTimeString();
 
   // delete functin
   const handleDelete = async (id) => {
@@ -88,8 +90,11 @@ const MyEventsCard = ({ MyEvent, isLoading, refetch }) => {
                 <p> {attendeeCount} </p>
               </div>
             </div>
+
             {/* card_para */}
             <div className="card_para">
+
+                {/* Date and time */}
               <div className="date_time  flex justify-between items-center mt-4 mb-2">
                 <div className="date flex gap-x-1  items-center">
                   <p className="text-base  md:text-lg font-semibold capitalize">
@@ -101,20 +106,23 @@ const MyEventsCard = ({ MyEvent, isLoading, refetch }) => {
                 <div className="time">
                   <p className="text-base md:text-lg"> {eventTime} </p>
                 </div>
+
+
+
               </div>
               <p className="location text-base md:text-lg font-semibold">
                 {" "}
                 Location : <span className="font-normal">{location} </span>{" "}
               </p>
-              <p className="description  text-base mt-2 mb-6">
+              <p className="description  text-base mt-2 mb-6 overflow-hidden">
                 {" "}
-                {description.slice(0, 50)}{" "}
+                {description}{" "}
               </p>
             </div>
             {/* card button */}
             <div className="card_button flex  gap-x-6 justify-end ">
               <Link
-                className="primary_btn flex justify-center items-center text-xl"
+                className="primary_btn border flex justify-center items-center text-xl"
                 onClick={() => setShowModal(true)}
               >
                 {" "}

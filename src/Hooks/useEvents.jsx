@@ -2,7 +2,10 @@ import React from "react";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const useEvents = () => {
+const useEvents = (searchValue='') => {
+               
+                    
+    
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -10,9 +13,9 @@ const useEvents = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["events"],
+    queryKey: ["events",searchValue],
     queryFn: async () => {
-      const res = await axiosSecure.get("/api/events");
+      const res = await axiosSecure.get(`/api/events?search=${searchValue}`);
       return res.data;
     },
   });
