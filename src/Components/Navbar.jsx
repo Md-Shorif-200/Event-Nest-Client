@@ -30,7 +30,7 @@ const Navbar = () => {
               {navList}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">eventNest</a>
+    <a className="btn btn-ghost text-3xl capitalize font-bold text-blue-400">eventNest</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -45,9 +45,9 @@ const Navbar = () => {
                <>
                       {/* user dropw-down menu */}
                  <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-xl  border-1 border-blue-500 btn-ghost btn-circle avatar">
+      <div tabIndex={0} role="button" className="btn btn-lg  border-1 border-blue-500 btn-ghost btn-circle avatar">
                 {/* user Image  */}
-        <div className="w-20 rounded-full">
+        <div className=" rounded-full">
           <img
             alt="User Name"
             src={user?.photoURL} 
